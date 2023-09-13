@@ -1,14 +1,16 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const features = require('./features');
 
-const router = express.Router();
-
 function getInstance() {
-  return app
-    .use(bodyParser.urlencoded({ extended: false }))
-    .use(bodyParser.json());
+  return (
+    app
+      // .use(bodyParser.urlencoded({ extended: false }))
+      .use(bodyParser.json())
+      .use(cors())
+  );
 }
 
 function init(cb = () => null) {
